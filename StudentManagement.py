@@ -68,7 +68,7 @@ def deleteRecord():
 
     for i in range(num):
         if stu[i].code == code:
-            deleteIndex(i)
+            del stu(i)
             num -= 1
             break
 
@@ -133,7 +133,7 @@ def show_menu():
     elif (option == 3):
         deleteRecord()
     elif (option == 4):
-        return
+        searchRecord()
     elif (option == 5):
         display()
     elif (option == 5):
