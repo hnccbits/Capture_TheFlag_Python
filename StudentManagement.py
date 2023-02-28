@@ -43,13 +43,16 @@ def insert():
     if num < max_size:
         i = num
         num += 1
-
-        name = input("Name: ")
         code = int(input("Student ID: "))
-        branch = input("Branch: ")
-        bat = int(input("Batch: "))
-        age = int(input("Age: "))
-        stu[i] = Student(name, code, branch, bat, age)
+        for j in range(num):
+            if stu[j].code == code:
+                print("Duplicate Student Id")
+            else:
+                name = input("Name: ")
+                branch = input("Branch: ")
+                bat = int(input("Batch: "))
+                age = int(input("Age: "))
+                stu[i] = Student(name, code, branch, bat, age)
     else:
         print("Student Table Full")
 
@@ -68,7 +71,7 @@ def deleteRecord():
 
     for i in range(num):
         if stu[i].code == code:
-            del stu(i)
+            del stu[i]
             num -= 1
             break
 
@@ -89,10 +92,11 @@ def searchRecord():
     show_menu()
 
 def display():
-    print("\t\tName\tStudent ID\tBranch\t\tBatch\tAge")
+    print("\tName\tStudent ID\tBranch\tBatch\tAge")
     print("\t  ","_"*60)
     for i in range(num):
-        print(f"\t\t{stu[i].name}\t{stu[i].code}\t\t{stu[i].branch}\t{stu[i].age}\t{stu[i].bat}")
+        print(f"\t{stu[i].name}\t{stu[i].code}\t\t{stu[i].branch}\t{stu[i].age}\t{stu[i].bat}")
+    show_menu()
 
 
 def updateRecord():
@@ -101,10 +105,10 @@ def updateRecord():
     for i in range(num):
         if stu[i].code == code:
             flag=1
-            name = input("Name: ")
-            branch = input("Branch: ")
-            bat = int(input("Batch: "))
-            age = int(input("Age: "))
+            stu[i].name = input("Name: ")
+            stu[i].branch  = input("Branch: ")
+            stu[i].bat = int(input("Batch: "))
+            stu[i].age = int(input("Age: "))
             break
 
     if flag == 0:
@@ -139,7 +143,7 @@ def show_menu():
     elif (option == 5):
         updateRecord()
     elif (option == 7):
-        return
+        sys.exit("Program exited")
     else:
         print("Expected Options are 1/2/3/4/5/6/7")
         show_menu()
